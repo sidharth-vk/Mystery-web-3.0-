@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Mystery - Chatroom{% endblock title %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+    <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+  
+    <!-- Jumbotron -->
+    <div class="container py-4 align-item-center pt-5">
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 " style="height: 100%;">
+          <div class="card cascading-right pt-5 pb-5" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body p-4 shadow-5 text-center">
+              <h2 class="fw-bold mb-5 pt-1 pb-1">Create Your Room</h2>
+              <form id="post-form" method="POST" action="checkview">
+                {% csrf_token %}
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                
+  
+                <!-- Email input -->
+                <div class="pt-1 pb-1">
+                <div class="form-outline mb-4">
+                  <input type="text" id="room_name" name="room_name" class="form-control" />
+                  <label class="form-label" for="room_name">Room Name</label>
+                </div>
+            </div>
+  
+                <!-- Password input -->
+                <div class="pt-1 pb-1">
+                <div class="form-outline mb-4 ">
+                  <input type="text" id="username" name="username" class="form-control" />
+                  <label class="form-label" for="username">Username</label>
+                </div>
+            </div>
+  
+                <!-- Checkbox -->
+                
+  
+                <!-- Submit button -->
+                <div class="pt-2 pb-2">
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                  Enter Room
+                </button>
+                </div>
+                <!-- Register buttons -->
+                
+              </form>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <img src="{% static 'assets\img\blockchain.jpg' %}" class="w-100  rounded-4 shadow-4" style="height: 550px;"
+            alt="" />
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+</div>
+<div class="container">
+{% comment %} <ul class="list-group list-group-light">
+
+  <li class="list-group-item px-3 border-0 rounded-3 list-group-item-secondary mb-2"></li>
+
+</ul> {% endcomment %}
+<hr>
+<h1> Rooms Available </h1>
+<ul class="list-group list-group-light">
+  {% for room in room %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+      <div class="fw-bold">{{room.name}}</div>
+      <div class="text-muted">Total Users: 10</div>
+    </div>
+    <span class="badge rounded-pill badge-success">Active</span>
+  </li>
+  {% endfor %}
+</ul>
+
+
+</div>
+  <!-- Section: Design Block -->
+  {% endblock content %}
